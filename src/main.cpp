@@ -32,12 +32,12 @@ public:
 
     void print() const
     {
-        std::cout << "\tNumber of values:\t" << num_value << std::endl;
+        std::cout << "    Number of values:\t" << num_value << std::endl;
         std::cout << std::fixed << std::setprecision(2);
-        std::cout << "\tStandard deviation:\t" << deviation << std::endl;
-        std::cout << "\tArithmetic mean:\t" << arithmetic_mean << std::endl;
-        std::cout << "\tRoot mean square:\t" << std::sqrt(sum_squares / num_value) << std::endl;
-        std::cout << "\tHarmonic mean:\t\t" << harmonic_mean << std::endl;
+        std::cout << "    Standard deviation:\t" << deviation << std::endl;
+        std::cout << "    Arithmetic mean:\t" << arithmetic_mean << std::endl;
+        std::cout << "    Root mean square:\t" << std::sqrt(sum_squares / num_value) << std::endl;
+        std::cout << "    Harmonic mean:\t" << harmonic_mean << std::endl;
     }
 
     int processInput()
