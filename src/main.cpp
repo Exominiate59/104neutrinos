@@ -38,6 +38,7 @@ public:
         std::cout << "    Arithmetic mean:\t" << arithmetic_mean << std::endl;
         std::cout << "    Root mean square:\t" << std::sqrt(sum_squares / num_value) << std::endl;
         std::cout << "    Harmonic mean:\t" << harmonic_mean << std::endl;
+        std::cout << "\n";
     }
 
     int processInput()
@@ -71,9 +72,23 @@ public:
     }
 };
 
+int is_float(const std::string &str)
+{
+    for (int i = 0; str[i]; i++){
+        if (str[i] < '0' || str[i] > '9')
+            return 84;
+    }
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     if (argc != 5)
+        return 84;
+    if (is_float(argv[1]) == 84
+    || is_float(argv[2]) == 84
+    || is_float(argv[3]) == 84
+    || is_float(argv[4]) == 84)
         return 84;
     int num_value = std::stoi(argv[1]);
     if (num_value < 0)
