@@ -81,6 +81,8 @@ int main(int argc, char **argv)
     double arithmetic = std::stod(argv[2]);
     double harmonic = std::stod(argv[3]);
     double deviation = std::stod(argv[4]);
+    if (deviation < 0)
+        return 84;
     Statistics stats(num_value, arithmetic, harmonic, deviation);
     if (stats.processInput() == 84)
         return 84;
