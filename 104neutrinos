@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+
+const readline = require('readline');
+
+function put_error(){
+    console.log("incorrect number of arguments");
+    process.exit(84);
+}
+
+function validate_numbers(args, indices) {
+    for (const index of indices) {
+        if (isNaN(parseFloat(args[index]))) {
+            console.log(`Invalid number at argument ${index + 1}`);
+            process.exit(84);
+        }
+    }
+}
+
+function validate_input_number(input){
+    const parts = input.trim().split(/\s+/);
+    if (parts.length !== 1){
+        console.log("Too many entry");
+        process.exit(84);
+    }
+    const value = parseFloat(input);
+    if (isNaN(value)){
+        console.log(`Invalid number ${input}`);
+        process.exit(84);
+    }
+    return value;
+}
+
+function standard_deviation(values, initial, nb_values){
+    const mean = values.reduce((acc, value) => acc + value, 0) / nb_values;
+    const sumOfSquares = values.reduce((acc, value) => acc + Math.pow(value - mean, 2), 0);
+    const variance = (sumOfSquares + Math.pow(initial, 2)) / nb_values;
+    return Math.sqrt(variance);
+}
+
+function nb_of_values(nb_values, answer, values, initial){
+    nb_values += 1;
+    values.push(parseFloat(answer));
+    console.log(`    Number of values:   ${nb_values}`);
+    const ecart_type = standard_deviation(values, initial, nb_values);
+    console.log(`    Standard deviation: ${ecart_type.toFixed(2)}`);
+    return nb_values;
+}
+
+function user_input(rl, nb_values, values, initial){
+    rl.question("Enter next value: ", (answer) => {
+        if (answer === "END"){
+            console.log("End of the programm");
+            rl.close();
+            process.exit(0);
+        }
+        validate_input_number(answer);
+        nb_values = nb_of_values(nb_values, answer, values, initial);
+        user_input(rl, nb_values, values, initial);
+    });
+}
+
+function user_interface(args){
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+    let nb_values = parseInt(args[0]);
+    let initial = parseFloat(args[3]);
+    let values = [];
+    user_input(rl, nb_values, values, initial);
+}
+
+function main(){
+    const args = process.argv.slice(2);
+
+    if (args.length != 4)
+        put_error();
+    validate_numbers(args, [0, 1, 2, 3]);
+    user_interface(args);
+}
+
+main();
