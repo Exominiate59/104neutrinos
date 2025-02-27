@@ -22,7 +22,7 @@ int user_input()
 {
     std::string input;
 
-    while (true) {
+    while (1) {
         std::cout << "Enter next value: ";
         std::getline(std::cin, input);
         if (input == "END") {
