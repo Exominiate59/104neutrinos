@@ -59,6 +59,8 @@ public:
                 sum_squares += value * value;
                 if (value != 0)
                     harmonic_mean = num_value / ((num_value - 1) / harmonic_mean + 1 / value);
+                else
+                    return 84;
                 print();
             } else {
                 std::cerr << "Invalid input" << std::endl;
