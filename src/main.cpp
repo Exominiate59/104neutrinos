@@ -23,7 +23,7 @@ public:
         sum_squares = square_deviation + num_value * (arithmetic_mean * arithmetic_mean);
     }
 
-    bool isNumber(const std::string& str) const
+    bool isNumber(const std::string &str) const
     {
         std::istringstream iss(str);
         float number;
